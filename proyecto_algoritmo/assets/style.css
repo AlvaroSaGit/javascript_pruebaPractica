@@ -1,0 +1,16 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.menu-ejercicio{
+    /*Configuracion e inicia el grid*/
+    display: grid;
+    /* Crea columnas de minimo 60 px que se ajustan solas al ancho disponible */
+    grid-template-columns: repeat(auto-fit,minmax(60px,1fr));
+    /* Espacio entre elementos */
+    gap: 10px;
+    margin-bottom: 10px;
+    background-color: white;
+}
