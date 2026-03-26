@@ -6,7 +6,7 @@ Este documento establece las reglas de convivencia, comunicación y estándares 
 | Nombre | Rol | Usuario de GitHub |
 | :--- | :--- | :--- |
 | [Alvaro Andres Salazar Herrera] | Líder (Arquitecto) | `@AlvaroSaGit` |
-| [Nombre del Aprendiz 2] | Desarrollador | `@usuario2` |
+| [Juan Manuel Rodriguez Carreño] | Desarrollador | `@Juan788800` |
 | [Leidy Esmeralda Duarte Prada] | Desarrollador | `@Leidyesme` |
 
 ## 2. Canales de Comunicación
