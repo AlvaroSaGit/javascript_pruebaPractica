@@ -13,7 +13,7 @@
 // • Arreglo de usuarios del sistema B.
 // Salidas:
 // • Lista final sin duplicados.
-// • Usuario conservado con mayor información.
+// • Usuario conservado con mayor información   
 
 function fusionarUsuarios(listaA, listaB) {
     try {

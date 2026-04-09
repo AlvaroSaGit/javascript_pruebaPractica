@@ -19,77 +19,49 @@
 
 function analizarFinanzas(gastos) {
     try {
-        if (!gastos || gastos.length === 0) {
-            throw new Error("no hay gastos registrados");
-        }
-
-        // 1. calcular el total gastado
+        // 1. sumar todo el dinero gastado (el total)
         let totalGeneral = 0;
-        for (const gasto of gastos) {
-            totalGeneral += gasto.monto;
+        for (const g of gastos) {
+            totalGeneral += g.monto;
         }
 
-        // 2. sumar montos por categoria de forma manual
-        let categoriasSumadas = {};
-        for (const gasto of gastos) {
-            let cat = gasto.categoria;
-            if (categoriasSumadas[cat]) {
-                categoriasSumadas[cat] += gasto.monto;
-            } else {
-                categoriasSumadas[cat] = gasto.monto;
+        // 2. buscar cual es el gasto individual mas caro
+        let gastoMasCaro = gastos[0]; 
+        for (const g of gastos) {
+            if (g.monto > gastoMasCaro.monto) {
+                gastoMasCaro = g;
             }
         }
 
-        // 3. identificar la categoria mas costosa y revisar desbalance
-        let categoriaMasCara = "";
-        let montoMaximo = 0;
-        let alertas = [];
-
-        for (let cat in categoriasSumadas) {
-            let montoCat = categoriasSumadas[cat];
-
-            // buscar la mas cara
-            if (montoCat > montoMaximo) {
-                montoMaximo = montoCat;
-                categoriaMasCara = cat;
-            }
-
-            // revisar si supera el 40% del total
-            let porcentaje = (montoCat / totalGeneral) * 100;
+        // 3. revisar si algun gasto solito supera el 40% del total
+        let alertas = "";
+        for (const g of gastos) {
+            let porcentaje = (g.monto / totalGeneral) * 100;
             if (porcentaje > 40) {
-                alertas.push("alerta: la categoria " + cat + " supera el 40% del gasto total");
+                alertas += "- " + g.categoria + " es muy alto (" + porcentaje + "%)\n";
             }
         }
 
-        // 4. mostrar el reporte
-        console.log("resumen financiero:", {
-            total: totalGeneral,
-            masCostosa: categoriaMasCara,
-            alertas: alertas
-        });
-
+        // 4. mostrar resultados
+        console.log("total:", totalGeneral);
         alert(
             "REPORTE FINANCIERO\n" +
-            "-------------------\n" +
-            "Total gastado: " + totalGeneral + "\n" +
-            "Categoria mas costosa: " + categoriaMasCara + " (" + montoMaximo + ")\n" +
-            (alertas.length > 0 ? alertas.join("\n") : "gastos equilibrados")
+            "total gastado: " + totalGeneral + "\n" +
+            "el gasto mas alto fue en: " + gastoMasCaro.categoria + "\n\n" +
+            "ALERTAS:\n" + (alertas || "todo bajo control")
         );
 
     } catch (error) {
-        alert("error al procesar: " + error.message);
+        alert("error en el calculo");
     }
 }
 
-// datos de prueba
+// datos de prueba simples
 const misGastos = [
-    { categoria: "comida", monto: 200 },
+    { categoria: "comida", monto: 100 },
     { categoria: "transporte", monto: 50 },
-    { categoria: "comida", monto: 300 }, // sumara 500 en comida
-    { categoria: "ocio", monto: 100 },
-    { categoria: "arriendo", monto: 800 } // esta deberia disparar la alerta
+    { categoria: "arriendo", monto: 500 } // este supera el 40%
 ];
 
-// ejecutar
 analizarFinanzas(misGastos);
 
