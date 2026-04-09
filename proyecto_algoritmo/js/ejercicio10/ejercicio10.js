@@ -1,3 +1,20 @@
+// Ejercicio 10: Fusión de usuarios con operador spread
+// Enunciado analítico:
+// Dos sistemas diferentes entregan listas de usuarios. Se requiere fusionarlas en una sola
+// lista, asegurando que si un usuario aparece duplicado, se conserve la versión con mayor
+// información.
+// Requerimientos:
+// • Usar el operador spread.
+// • Validar duplicados por documento.
+// • Crear una función fusionarUsuarios().
+// • Retornar lista depurada.
+// Entradas:
+// • Arreglo de usuarios del sistema A.
+// • Arreglo de usuarios del sistema B.
+// Salidas:
+// • Lista final sin duplicados.
+// • Usuario conservado con mayor información.
+
 function fusionarUsuarios(listaA, listaB) {
     try {
         // revisamos que las listas existan
